@@ -1,0 +1,2 @@
+# configTranslator__Highlight
+更像是一个代码高亮显示器
