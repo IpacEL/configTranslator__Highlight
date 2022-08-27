@@ -1,0 +1,184 @@
+body{
+	--c:#06B0FF; /*蓝色*/
+	--cT:#5dccff17; /*半透明+蓝色*/
+	--e:#F88C00; /*橙色*/
+	--g:#20FF02; /*绿色*/
+	--t:#7F7F7F80; /*半透明灰色*/
+	
+	background-color:var(--a0); /*自适应颜色*/
+}
+
+/*布局*/
+*,*::before{box-sizing:border-box}
+*{scroll-behavior:smooth}
+body,html{margin:0}
+
+*{transition:all .2s ease}
+.no-delayed-action{transition:all 0s}
+
+
+/*光标*/
+html{cursor:url('/plugins/img/command.png'),default} /*黄色*/
+a, button, td, .cursor-2, summary, label{cursor:url('/plugins/img/command_2.png'),default} /*青色*/
+textarea, input{cursor:url('/plugins/img/command_3.png'),default} /*紫色*/
+/*滚动条*/
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:#62626280}
+::-webkit-scrollbar-thumb:hover{background:#62626260}
+::-webkit-scrollbar-thumb:active{background:#62626270}
+/*火狐*/
+*{scrollbar-width:thin;scrollbar-color:#333 transparent}
+
+/*文本*/
+body{line-height:1.4;word-break:break-word}
+body,pre,code,input,textarea,.no-cake-title-font{
+	/*font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Ubuntu Monospace", "Lucida Console";*/
+	font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", "Ubuntu Monospace";
+	color:var(--a1);
+}
+
+p, li{
+	margin-top:0.375rem;
+	margin-bottom:0.375rem;
+	font-size:1rem;
+}
+p:last-child{margin-bottom:0}
+hr{border:none;height:1px;background-color:var(--t)}
+a{color:var(--c);text-decoration:none;word-wrap:break-word}
+a.-ui:hover{text-decoration:none;background-color:var(--cT)}
+h1, h2, h3, h4, h5, h6{margin:0 0 7px 0; font-family:"Trebuchet MS", "IBMPlexSans", "Arial", "sans-serif"} /*标题字体*/
+h1, h2, h3, h4{font-weight:500}
+h1{font-size:2rem}
+h2{font-size:1.5rem}
+
+/*选中文本高亮*/
+::selection{background:#34beff33}
+
+/*浮动*/
+.center{text-align:center} /*居中*/
+.left{float:left}
+.right{float:right}
+.clear,br{clear:both}
+
+/*删除边距*/
+.-mBottom{margin-bottom:0!important;padding-bottom:0!important}
+.-mTop{margin-top:0!important;padding-top:0!important}
+
+/*盒子*/
+.box{
+	margin:15px 0 25px 0;
+	width:100%;
+	padding:24px;
+	background-color:var(--a0);
+	border-top:3px solid var(--c);
+	box-shadow:0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%);
+	transition:border-top .3s ease;
+}
+
+/*边框盒子*/
+.box.-s2{
+	border:1px solid var(--t);
+	box-shadow:none;
+	transition:border .3s ease;
+}
+.box.-s2:hover, .box.-s2.-inte{border:1px solid var(--c)}
+
+
+
+/*按钮*/
+.btn{
+	padding:5px 10px 5px 10px;
+	border-radius:0;
+	height:27px;
+	margin:5px;
+	color:#fff;
+	background:var(--c);
+	box-shadow: 0 15px 35px rgb(50 50 93 / 10%), 0 5px 15px rgb(0 0 0 / 7%);
+	border:none;
+}
+.btn{transition:all .4s ease}
+.btn:hover{-webkit-filter:brightness(115%)}
+.btn:active{-webkit-filter:brightness(85%)}
+
+/*图片*/
+img{-webkit-user-drag:none}
+
+/*分页*/
+ul.nav{list-style-type:none;margin:0;padding:0;overflow:hidden}
+ul.nav li{float:left}
+ul.nav li.right{float:right}
+ul.nav li a{display:block;color:var(--a1);padding:4px 10px;font-size:1rem;transition:all .5s ease}
+ul.nav li a:hover{background-color:var(--a1);color:var(--a0);transition:all .3s ease;text-decoration:none}
+
+/*自适应*/
+.adaptive-PC{display:none} .adaptive-PE{display:inline} /*在低分辨率下隐藏a-PC*/
+.container{margin:auto;position:relative;padding-right:15px;padding-left:15px}
+@media(min-width:720px){.container{max-width:784px}}
+@media(min-width:800px){.container{max-width:864px}}
+@media(min-width:960px){
+	.container{max-width:1024px}
+}
+@media(min-width:1280px){
+	.container{max-width:1344px}
+	.adaptive-PC{display:inline} .adaptive-PE{display:none} /*在不同分辨率下隐藏或显示什么*/
+}
+@media(min-width:1920px){.container{max-width:1574px}}
+
+/*深色*/
+@media (prefers-color-scheme:dark){
+	body{
+		--a0:#0d1118;
+		--a1:#a9b1b9;
+	}
+	
+	/*深色模式强制使用边框盒子*/
+	.box{
+		border:1px solid var(--t);
+		box-shadow:none;
+		transition:border .3s ease;
+	}
+	.box:hover, .box.-inte{border:1px solid var(--c)}
+}
+
+/*浅色*/
+@media (prefers-color-scheme:light){
+	body{
+		--a0:#f7f7f7;
+		--a1:#162838;
+		background-image:repeating-linear-gradient(135deg,#5dccff0f,#5dccff0f 4rem, transparent 0,transparent 8rem);
+		min-height:calc(100vh); /*修复条纹裂开*/
+	}
+}
+
+
+/*动效*/
+.start{animation:start .7s forwards}
+.start2{opacity:0;animation:start .7s .2s forwards}
+@keyframes start{
+	0%{opacity:0;margin-top:2rem}
+	100%{opacity:1;margin-top:0}
+}
+.start3{animation:start3 .7s forwards}
+@keyframes start3{
+	0%{background-color:var(--cT);}
+	100%{background-color:transparent;}
+}
+
+/*动效2*/
+.opacity{opacity:0;animation:opacity .7s .35s forwards}
+@keyframes opacity{
+	0%{
+		opacity:0;
+		margin-top:3rem;
+		background-color:var(--cT);
+	}
+	100%{
+		opacity:1;
+		margin-top:0;
+		background-color:transparent;
+	}
+}
+
+/*按钮*/
+a:hover{background-color: var(--cT);}
+

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<title>[IpacEL]/ translator</title>
+	<link rel="stylesheet" href="plugins/cake.css?v=1.86">
+	<link rel="stylesheet" href="plugins/tool-2.css?v=1.123">
+</head>
+<body>
+	<div class="container">
+
+
+		<!-- 标题 -->
+		<br />
+		<h2 translate="no">配置翻译工具 v2.2_beta5<button class="btn right" onclick="window.location='https://ipacel.cc/'">back</button></h2>
+		
+		<!-- box1 输入和配置 -->
+		<div class="box" translate="no">
+
+			<!-- 输入框 -->
+			<textarea id="inpConfig" class="no-delayed-action" placeholder=" 在这里粘贴配置"></textarea>
+			
+			<!-- 配置 -->
+			<hr />
+			<details open><summary>配置</summary>
+
+				<div class="config-box">
+					<div class="list-box">
+
+						<p class="title">语言设置: <span class="-notes">选择您的配置文件格式</span></p>
+						<div id="ConfigBox-Format"><p><i>正在渲染配置...</i></p></div>
+		
+						<p class="title">功能设置: <span class="-notes">此配置格式可使用的功能</span></p>
+						<div id="ConfigBox-Function"></div>
+
+						<p class="title">其他功能: <span class="-notes"></span></p>
+						<div id="ConfigBox-NotFormat-Function"></div>
+
+					</div>
+
+					<div class="list-box">
+
+						<p class="title">标准化译名: <span class="-notes">启用可能得到更好的翻译, 目前会影响机器翻译质量</span></p>
+
+						<div id="ConfigBox-Keyword"></div>
+
+					</div>
+
+					<div class="list-box">
+
+						<p class="title">DEBUG: <span class="-notes">若不了解请勿使用</span></p>
+
+						<div id="ConfigBox-Debug"></div>
+
+					</div>
+				</div>
+
+				<hr />
+			</details>
+
+			<!-- 启动按钮和进度条 -->
+			<button class="btn right" onclick="down()">滚动</button>
+			<button class="btn right" onclick="From_pErfo()">启动</button>
+			<p>Worker: 
+				<code id="schedule">[这里会显示进度]</code>
+				<textarea id="scheduleLog"
+					class="no-delayed-action"
+					placeholder="[这里会显示日志]"
+				></textarea>
+			</p>
+			
+			
+		</div>
+		
+
+		<!-- box2 输出 -->
+		<div id="Main" translate="yes" contenteditable="true" class="box">
+
+			<p>> 这里会显示输出的配置</p>
+			<p>此工具已使用正则重写. 简化配置, 提高性能和稳定性</p>
+
+			<hr />
+			<br />
+			<p>使用方法: </p>
+			<p>1. 在上方输入框粘贴配置文件内容</p>
+			<p>2. 根据配置格式和需求选中需要的功能</p>
+			<p>3. 按下启动按钮, 等待完成</p>
+			<p>4. 启动浏览器的翻译插件, 按钮滚动按钮, 等待返回顶部</p>
+			<p>5. 全选复制</p>
+
+			<br />
+			<p>功能说明: </p>
+			<p>[/] 在翻译插件中指定原文语言可以得到更好的翻译效果</p>
+			<p>翻译值: 允许翻译配置中的值, 常用于为翻译语言文件/汉化提供参考</p>
+			<p>保留URL和路径: 防止翻译路径和网址</p>
+			<p>保留变量: 支持一下几种格式的变量
+				<code>%xxx_xxx%</code>, 
+				<code>xxx: xxx</code>[翻译值模式关闭"键值对"], 
+				<code>{0-9}</code>
+			</p>
+			<p>尝试保留不需要翻译的部分: 取消匹配
+				<code>"color":"xxx"</code>,
+				<code>"action":"xxx"</code>
+				. 保留
+				<code>"value":"/指令"</code>
+			</p>
+			<p>保留颜色代码: <code>/(\§[0-9a-z]{1})/gi</code></p>
+			<p>保留中文: 防止翻译已有的中文</p>
+			<p>不保留关键词: 开启标准化译名时启用此选项可以得到上下文连续的翻译, 开启"使用翻译API"时默认开启此选项</p>
+			<p>保留被注释的配置: 尝试在注释中匹配配置并保留</p>
+
+			<hr />
+			<br />
+			<p>常见问题: </p>
+			<p>1. 若无法正常运行, 请尝试使用一次 <code>Ctrl + F5</code> 重新加载代码 (我喜欢在线上改代码, 可能哪次忘记修改版本号了</p>
+			<p>2. 此工具依赖 HTML 的 translate 属性以及浏览器的翻译功能. 若未按预期翻译, 请尝试更换或更新浏览器, 比如我测试时使用的 <code>Chrome 100+</code></p>
+			<img src="https://ipacamod.cc/api/v3/file/get/387/Chrome_100+.png?sign=SJJ0JZIZNDOlz4VnuD6Izwlkl3GVJkram-s4am7vL2o%3D%3A0" />
+			
+			<hr />
+			<br />
+			<p>计划: </p>
+			<p>匹配被注释的配置</p>
+			<p>点击切换显示原文</p>
+			<p>将鼠标悬浮在橙色的保留字符上可以查看此字符被什么功能保留</p>
+			<p>添加翻译API, 脱离浏览器翻译插件: https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&sl=en&tl=zh_CN&q=Hello</p>
+			<p>我想到翻译API的调用方法了, 再等等吧</p>
+
+			<br />
+			<p>着色器: </p>
+			<p>键: <span class="-key">蓝色</span></p>
+			<p>值: <span class="-a2">黑色/白色</span></p>
+			<p>注释符/引号/括号: <span class="-a3">橙色</span></p>
+			<p>注释: <span class="-notes">半透明灰色</span>, 会被翻译</p>
+			<p>-未匹配: <span class="-n1">紫色</span></p>
+			<p>-抛出错误: <span class="-ERROR">红色</span></p>
+			<p>保留*: <span class="-a3">橙色</span></p>
+			<p>翻译*: <span class="-notes-str">不透明灰色</span>, 会被翻译</p>
+			<p>标准化译名: <span class="-a3">橙色</span></p>
+				
+			<hr />
+			<br />
+			<p>信息: </p>
+			<p>开发者: ApliNi</p>
+			<p>Minecraft 标准化译名: https://minecraft.fandom.com/zh/wiki/Minecraft_Wiki:%E8%AF%91%E5%90%8D%E6%A0%87%E5%87%86%E5%8C%96</p>
+			<p>更新日志: https://ipacel.cc/Range/?p=%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97</p>
+			<p>发布链接: https://www.mcbbs.net/thread-1369440-1-1.html</p>
+
+
+		</div>
+
+
+		<br /><br /><br />
+
+		<!-- <img src="https://ipacel.cc/+/MoeCounter/?u=IpacEL-translator" /> -->
+		<iframe src="https://ipacel.cc/+/MoeCounter2/?name=IpacEL-translator&out_mode=html&align=left" frameborder="0" scrolling="no" width="100%" height="100px"></iframe>
+
+	</div>
+	
+</body>
+	<script type="text/javascript">
+		var $cake_version = 124;
+	</script>
+	<script type="text/javascript" src="plugins/tool-2.js?v=125"></script>
+</html>
+

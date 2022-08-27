@@ -1,0 +1,159 @@
+/*UI*/
+summary{
+	padding: 10px;
+}
+.config-box{
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+	.config-box .list-box{
+		padding: 10px;
+	}
+		.config-box .list-box .title{
+			color: var(--c);
+		}
+		
+
+
+/*输入框*/
+input,textarea,button{
+	-webkit-appearance:none;
+	border:none;
+	outline:none;
+	border-radius:0;
+	background-color:var(--a0);
+}
+	textarea{
+		tab-size:4;
+		resize:vertical;
+		padding:10px;
+		width:100%;
+		height:72px;
+		font-size:0.75rem;
+	}
+		#scheduleLog{
+			display: none;
+			height: 256px;
+			margin-top: 10px;
+			border: 1px solid var(--t);
+		}
+	input{
+		width:12px;
+		height:12px;
+		margin:-0.5px;
+		margin-left: 10px;
+		border:1px double var(--t)
+	}
+	label{
+		padding-left: 5px;
+	}
+		input:checked{border:6px double var(--t)}
+
+
+/**/
+.wordInput{
+	width:100px;
+	height:1.2rem;
+}
+
+pre{tab-size:4}
+code{padding:1px 5px;margin:0;background-color:#AFB8C114;font-size:14px;white-space:pre-wrap;word-break:break-all}
+pre code{display:block;overflow-x:scroll;white-space:pre;padding:10px 10px 4px 10px}
+
+
+
+/*输出样式*/
+#Main{
+	outline: none;
+}
+
+#Main, #Main *, .-MainFS{
+	font-size: 0.75rem;
+}
+
+
+
+
+
+	/* 着色 */
+
+
+.-MOD{ /* 模组名? 模块名? */
+	color: #3be2ff;
+}
+
+
+.-INFO, .-key{ /* 键 */
+	color: #06B0FF;
+}
+	.-INFO + .-MOD{/* > 模组 */
+		color: #3be2ff;
+	}
+		.-INFO + .-str,
+		.-INFO + .-MOD + .-str{/* > 文本 */
+			color: var(--a1);
+		}
+	.-INFO ~ .-n1{/* > 多行文本 */
+		color: #3be2ff;
+	}
+
+
+.-ERROR{ /* 错误 */
+	color: #fd2727;
+}
+	.-ERROR + .-MOD{/* > 模组 */
+		color: #ff5959;
+	}
+		.-ERROR + .-str,
+		.-ERROR + .-MOD + .-str{/* > 文本 */
+			color: #ff5959;
+		}
+	.-ERROR ~ .-n1{/* > 多行文本 */
+		color: #ff5959;
+	}
+
+
+.-WARN{ /* 警告 */
+	color: #f1c800;
+}
+	.-WARN + .-MOD{/* > 模组 */
+		color: #b99a07;
+	}
+		.-WARN + .-str,
+		.-WARN + .-MOD + .-str{/* > 文本 */
+			color: #b99a07;
+		}
+	.-WARN ~ .-n1{/* > 多行文本 */
+		color: #b99a07;
+	}
+
+
+.-str{ /* 值 */
+	color: var(--a1);
+}
+
+
+.-a3{ /* 缩进和注释符 */
+	color: #F88C00;
+}
+
+
+.-notes{ /* 注释 */
+	color: #7F7F7F80;
+}
+	.-notes-str{ /* 可翻译的值 */
+		color: #7f7f7f;
+	}
+
+
+.-TIME{ /* 时间 */
+	color: #16c000;
+}
+
+
+.-n1{ /* 未匹配 */
+	color: #8400ff;
+}
+
+
