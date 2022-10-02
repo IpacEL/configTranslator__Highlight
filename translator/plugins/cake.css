@@ -19,7 +19,7 @@ body,html{margin:0}
 
 /*光标*/
 html{cursor:url('/plugins/img/command.png'),default} /*黄色*/
-a, button, td, .cursor-2, summary, label{cursor:url('/plugins/img/command_2.png'),default} /*青色*/
+a, button, td, .-link, summary, label{cursor:url('/plugins/img/command_2.png'),default} /*青色*/
 textarea, input{cursor:url('/plugins/img/command_3.png'),default} /*紫色*/
 /*滚动条*/
 ::-webkit-scrollbar{width:6px;height:6px}
