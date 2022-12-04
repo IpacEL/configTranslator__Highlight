@@ -7,9 +7,3 @@
 ## 说明
 index.html 中有详细的使用方法.  
 您可以修改 `Keyword` 中的数据来添加更多正确的翻译, 也可以修改 `plugins/cake.js` 中的正则表达式来支持更多格式. 最后只需要将这些功能添加到 `plugins/tool-2.js` 中即可在前端显示出来.  
-
----
-
-## 发布
-MCBBS: https://www.mcbbs.net/thread-1369440-1-1.html
-
